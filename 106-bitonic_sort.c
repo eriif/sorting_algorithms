@@ -22,16 +22,16 @@ void swap(int arr[], int item1, int item2, int order)
 * merge - sort bitonic sequences recursively in both orders
 * @arr: array
 * @low: first element
-* @nelemnt: elements number
+* @n_elemnt: elements number
 * @order: 1: ascending order, 0 descending order
 */
-void merge(int arr[], int low, int nelemnt, int order)
+void merge(int arr[], int low, int n_elemnt, int order)
 {
 	int mid, i;
 
-	if (nelemnt > 1)
+	if (n_elemnt > 1)
 	{
-		mid = nelemnt / 2;
+		mid = n_elemnt / 2;
 		for (i = low; i < low + mid; i++)
 			swap(arr, i, i + mid, order);
 		merge(arr, low, mid, order);
@@ -46,35 +46,35 @@ void merge(int arr[], int low, int nelemnt, int order)
 * @order: 1: ascending order, 0 descending order
 * @size: array lenght
 */
-void bitonicsort(int arr[], int low, int nelemnt, int order, int *size)
+void bitonicsort(int arr[], int low, int n_elemnt, int order, int *size)
 {
 	int mid;
 
-	if (nelemnt > 1)
+	if (n_elemnt > 1)
 	{
 		if (order >= 1)
 		{
-			printf("Merging [%i/%i] (UP):\n", nelemnt, size);
-			print_array(&arr[low], nelemnt);
+			printf("Merging [%i/%i] (UP):\n", n_elemnt, size);
+			print_array(&arr[low], n_elemnt);
 		}
 		else
 		{
-			printf("Merging [%i/%i] (DOWN):\n", nelemnt, size);
-			print_array(&arr[low], nelemnt);
+			printf("Merging [%i/%i] (DOWN):\n", n_elemnt, size);
+			print_array(&arr[low], n_elemnt);
 		}
-		mid = nelemnt / 2;
+		mid = n_elemnt / 2;
 		bitonicsort(arr, low, mid, 1, size);
 		bitonicsort(arr, low + mid, mid, 0, size);
-		merge(arr, low, nelemnt, order);
+		merge(arr, low, n_elemnt, order);
 		if (order <= 0)
 		{
-			printf("Result [%i/%i] (DOWN):\n", nelemnt, size);
-			print_array(&arr[low], nelemnt);
+			printf("Result [%i/%i] (DOWN):\n", n_elemnt, size);
+			print_array(&arr[low], n_elemnt);
 		}
 		if (order >= 1)
 		{
-			printf("Result [%i/%i] (UP):\n", nelemnt, size);
-			print_array(&arr[low], nelemnt);
+			printf("Result [%i/%i] (UP):\n", n_elemnt, size);
+			print_array(&arr[low], n_elemnt);
 		}
 	}
 }
